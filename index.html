@@ -32,7 +32,7 @@
     animation:pikaGlow 8s ease infinite;
     overflow:hidden;
     position:relative;
-    user-select:none; /* impede selecionar qualquer texto */
+    user-select:none;
     -webkit-user-select:none;
     -moz-user-select:none;
   }
@@ -76,6 +76,7 @@
     box-shadow:0 10px 40px rgba(0,0,0,0.35), 0 0 30px rgba(255,180,0,0.12) inset;
     text-align:center;
     z-index:5;
+    isolation:isolate; /* evita mistura que deixava a bolha branca */
   }
 
   .raichu{
@@ -92,20 +93,27 @@
     50%{transform:translateY(-6px)}
   }
 
+  /* ===== BOLHA corrigida ===== */
   .bubble{
     display:inline-block;
     margin-top:16px;
     padding:12px 18px;
     border-radius:20px;
-    background:rgba(252, 164, 1, 0.883);
+
+    background-color: #fca401;
+    background-image: linear-gradient(90deg, #ffb300 0%, #fca401 100%);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+
     color:#000000;
     font-weight:600;
-    text-shadow:0 0 10px rgba(243, 235, 235, 0.3);
+    text-shadow:0 0 10px rgba(243, 235, 235, 0.18);
     border:1px solid rgba(0, 0, 0, 0.14);
-    
+    background-clip: padding-box;
     pointer-events:none;
   }
 
+  /* ===== Botão ===== */
   .pika-btn{
     margin-top:22px;
     background:linear-gradient(90deg,#fff176,#ffb300);
@@ -155,8 +163,20 @@
     body{padding:10px;}
     .card{padding:20px 16px;border-radius:20px;}
     .raichu{width:160px;}
-    .bubble{font-size:.95rem;padding:10px 14px;}
     .pika-btn{padding:12px 32px;font-size:1rem;}
+
+    /* força cor sólida no mobile */
+    .bubble{
+      -webkit-backdrop-filter:none !important;
+      backdrop-filter:none !important;
+      background-image:none !important;
+      background-color:#fca401 !important;
+      color:#111 !important;
+      text-shadow:none !important;
+      border:1px solid rgba(0,0,0,0.12) !important;
+      font-size:.95rem;
+      padding:10px 14px;
+    }
   }
 </style>
 </head>
