@@ -9,103 +9,106 @@
   :root{
     --accent1: #fff176;
     --accent2: #ffb300;
-    --glass: rgba(255,255,255,0.12);
+    --glass: rgba(255,255,255,0.1);
   }
 
-  *{box-sizing:border-box;margin:0;padding:0}
+  *{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color: transparent;
+  }
   html,body{height:100%}
 
-  /* ===== Fundo animado com "vibes Pikachu" ===== */
+  /* ===== Fundo animado Pikachu ===== */
   body{
-    font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    font-family:"Poppins",system-ui;
     min-height:100vh;
     display:flex;
     align-items:center;
     justify-content:center;
-    background: linear-gradient(45deg, #fff176, #ffeb3b, #ffca28, #ffb300);
-    background-size: 400% 400%;
-    animation: pikaGlow 8s ease infinite;
+    background: linear-gradient(45deg, #ffeb3b, #fdd835, #fbc02d, #f57f17);
+    background-size:400% 400%;
+    animation:pikaGlow 8s ease infinite;
     overflow:hidden;
     position:relative;
+    user-select:none; /* impede selecionar qualquer texto */
+    -webkit-user-select:none;
+    -moz-user-select:none;
   }
 
   @keyframes pikaGlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
   }
 
-  /* ===== Brilhos elétricos piscando ===== */
-  .spark-bg {
+  /* ===== Brilhos elétricos ===== */
+  .spark-bg{
     position:absolute;
-    top:0;left:0;right:0;bottom:0;
-    overflow:hidden;
+    inset:0;
     z-index:0;
+    overflow:hidden;
   }
   .spark-bg span{
     position:absolute;
-    display:block;
-    width:6px;
-    height:6px;
+    width:6px;height:6px;
     border-radius:50%;
-    background: radial-gradient(circle at center, #fff, #fff59d 40%, transparent 70%);
-    box-shadow:0 0 14px #fff59d, 0 0 30px #fff9c4;
+    background:radial-gradient(circle at center,#fff,#fff59d 40%,transparent 70%);
+    box-shadow:0 0 14px #fff59d,0 0 30px #fff9c4;
     opacity:0.6;
-    animation: sparkle 3s infinite ease-in-out;
+    animation:sparkle 3s infinite ease-in-out;
   }
-  @keyframes sparkle {
-    0%,100%{transform:scale(1) translateY(0); opacity:0.4;}
-    50%{transform:scale(1.3) translateY(-4px); opacity:1;}
+  @keyframes sparkle{
+    0%,100%{transform:scale(1);opacity:.4;}
+    50%{transform:scale(1.3);opacity:1;}
   }
 
-  /* ===== Cartão central ===== */
-  .card {
-    width: 360px;
-    max-width: calc(100vw - 40px);
-    background: var(--glass);
-    border-radius: 28px;
-    padding: 28px 22px;
-    backdrop-filter: blur(14px) saturate(120%);
-    border: 1px solid rgba(255,255,255,0.14);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.35), 0 0 30px rgba(255,180,0,0.08) inset;
+  /* ===== Cartão principal ===== */
+  .card{
+    width:360px;
+    max-width:calc(100vw - 40px);
+    background:var(--glass);
+    border-radius:28px;
+    padding:28px 22px;
+    backdrop-filter:blur(14px) saturate(140%);
+    border:1px solid rgba(255,255,255,0.14);
+    box-shadow:0 10px 40px rgba(0,0,0,0.35), 0 0 30px rgba(255,180,0,0.12) inset;
     text-align:center;
-    position:relative;
     z-index:5;
   }
 
-  /* Raichu animado */
-  .raichu {
-    width: 220px;
+  .raichu{
+    width:200px;
     max-width:70%;
-    filter: drop-shadow(0 12px 30px rgba(0,0,0,0.35));
-    animation: gently 3.2s ease-in-out infinite;
+    filter:drop-shadow(0 12px 30px rgba(0,0,0,0.35));
+    animation:gently 3s ease-in-out infinite;
     display:block;
-    margin: 0 auto;
+    margin:0 auto;
+    pointer-events:none;
   }
   @keyframes gently{
     0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-8px)}
+    50%{transform:translateY(-6px)}
   }
 
-  /* Balão de fala */
-  .bubble {
+  .bubble{
     display:inline-block;
-    margin-top:18px;
+    margin-top:16px;
     padding:12px 18px;
     border-radius:20px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.08));
+    background:rgba(255,255,255,0.15);
     color:#fff;
     font-weight:600;
-    text-shadow: 0 0 10px rgba(0,0,0,0.35);
-    border: 1px solid rgba(255,255,255,0.14);
-    backdrop-filter: blur(6px);
+    text-shadow:0 0 10px rgba(0,0,0,0.3);
+    border:1px solid rgba(255,255,255,0.14);
+    backdrop-filter:blur(6px);
+    pointer-events:none;
   }
 
-  /* Botão PIKA */
-  .pika-btn {
-    margin-top:20px;
-    display:inline-block;
-    background: linear-gradient(90deg, #fff176, #ffb300);
+  .pika-btn{
+    margin-top:22px;
+    background:linear-gradient(90deg,#fff176,#ffb300);
     border:none;
     padding:14px 42px;
     border-radius:999px;
@@ -114,94 +117,83 @@
     font-size:1.05rem;
     color:#222;
     cursor:pointer;
-    box-shadow: 0 10px 30px rgba(255,160,0,0.18), 0 2px 6px rgba(0,0,0,0.25);
-    transition: transform .18s ease, box-shadow .18s ease;
-    position:relative;
+    box-shadow:0 10px 30px rgba(255,160,0,0.18),0 2px 6px rgba(0,0,0,0.25);
+    transition:transform .18s ease,box-shadow .18s ease;
     z-index:2;
   }
-  .pika-btn:active{ transform: translateY(2px) scale(.995) }
-  .pika-btn:hover{ box-shadow: 0 18px 50px rgba(255,170,0,0.24) }
+  .pika-btn:hover{box-shadow:0 18px 50px rgba(255,170,0,0.24)}
+  .pika-btn:active{transform:translateY(2px) scale(.98)}
 
-  /* Corações flutuantes */
-  .heart {
+  /* ===== Corações e faíscas ===== */
+  .heart{
     position:fixed;
-    font-size: 26px;
+    font-size:26px;
     pointer-events:none;
     z-index:9999;
-    will-change: transform, opacity;
-    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.25));
+    filter:drop-shadow(0 6px 12px rgba(0,0,0,0.25));
   }
-
-  /* Faíscas (no clique) */
-  .spark {
+  .spark{
     position:fixed;
-    width:8px;
-    height:8px;
+    width:8px;height:8px;
     border-radius:3px;
     pointer-events:none;
     z-index:9999;
     opacity:0.9;
-    will-change: transform, opacity;
-    mix-blend-mode: screen;
-    background: radial-gradient(circle at 40% 30%, #fff, #ffe082 40%, #ffb300 80%, transparent 100%);
-    box-shadow: 0 0 12px rgba(255,220,80,0.9), 0 0 6px rgba(255,255,255,0.6);
+    mix-blend-mode:screen;
+    background:radial-gradient(circle at 40% 30%,#fff,#ffe082 40%,#ffb300 80%,transparent 100%);
+    box-shadow:0 0 12px rgba(255,220,80,0.9),0 0 6px rgba(255,255,255,0.6);
   }
 
-  /* Rodapé */
-  .credit {
+  .credit{
     font-size:12px;
     color:rgba(255,255,255,0.7);
     margin-top:14px;
   }
 
-  /* Responsivo */
-  @media (max-width:420px){
-    .raichu{ width:180px }
-    .bubble{ font-size:0.96rem; padding:10px 14px }
-    .pika-btn{ padding:12px 34px; font-size:1rem }
+  /* ===== Responsivo ===== */
+  @media (max-width:480px){
+    body{padding:10px;}
+    .card{padding:20px 16px;border-radius:20px;}
+    .raichu{width:160px;}
+    .bubble{font-size:.95rem;padding:10px 14px;}
+    .pika-btn{padding:12px 32px;font-size:1rem;}
   }
 </style>
 </head>
 
 <body>
-  <!-- Fundo com faíscas cintilantes -->
   <div class="spark-bg" aria-hidden="true"></div>
 
   <div class="card" role="region" aria-label="Cartão Raichu">
-      <img class="raichu" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/026.png" alt="Raichu sorrindo">
-      <div class="bubble" id="bubble"> Vem ser o Pikachu do meu Raichu! </div>
+    <img class="raichu" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/026.png" alt="Raichu sorrindo">
+    <div class="bubble">Vem ser o Pikachu do meu Raichu!</div>
 
-      <div>
-      <button class="pika-btn" id="pikaBtn" aria-pressed="false">PIKA</button>
-      </div>
+    <button class="pika-btn" id="pikaBtn" aria-pressed="false">PIKA</button>
 
-      <div class="credit" aria-hidden="true"> </div>
+    <div class="credit" aria-hidden="true"></div>
   </div>
 
 <script>
-  const btn = document.getElementById('pikaBtn');
-  const bg = document.querySelector('.spark-bg');
+  const btn=document.getElementById('pikaBtn');
+  const bg=document.querySelector('.spark-bg');
+  const HEART_COUNT=10, SPARK_COUNT=14;
 
-  const HEART_COUNT = 10;
-  const SPARK_COUNT = 14;
-
-  /* === Fundo cintilante gerado dinamicamente === */
   for(let i=0;i<25;i++){
-    const s = document.createElement('span');
-    s.style.left = Math.random()*100 + '%';
-    s.style.top = Math.random()*100 + '%';
-    s.style.animationDelay = (Math.random()*3)+'s';
+    const s=document.createElement('span');
+    s.style.left=Math.random()*100+'%';
+    s.style.top=Math.random()*100+'%';
+    s.style.animationDelay=(Math.random()*3)+'s';
     bg.appendChild(s);
   }
 
   function getButtonCenter(el){
-    const r = el.getBoundingClientRect();
-    return { x: r.left + r.width/2, y: r.top + r.height/2 };
+    const r=el.getBoundingClientRect();
+    return {x:r.left+r.width/2, y:r.top+r.height/2};
   }
 
   function spawnHearts(x,y){
     for(let i=0;i<HEART_COUNT;i++){
-      const h = document.createElement('div');
+      const h=document.createElement('div');
       h.className='heart';
       h.innerText='💖';
       const offsetX=(Math.random()-0.5)*80;
